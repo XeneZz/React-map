@@ -1,0 +1,6 @@
+.bg {
+  background: url("../assets/images/earthbg.jpg");
+
+  background-size: cover;
+  height: 100vh;
+}
