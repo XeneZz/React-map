@@ -1,7 +1,7 @@
-import React, { useEffect, useRef } from "react";
+import React from "react";
+import Globe from "../components/Globe";
 import Navigation from "../components/Navigation";
 import "../styles/Home.css";
-import Globe from "../components/Globe";
 
 const Home = () => {
   return (

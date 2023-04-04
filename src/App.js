@@ -1,10 +1,9 @@
 import React from "react";
-import Navigation from "./components/Navigation.js";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Home from "./pages/Home";
-import Map from "./pages/Map";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Earth from "./pages/Earth";
 import Flag from "./pages/Flag";
+import Home from "./pages/Home";
+import Map from "./pages/Map";
 
 const App = () => {
   return (

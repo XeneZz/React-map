@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from "react"; // Importation de React, useRef et useEffect
+import React, { useEffect, useRef } from "react"; // Importation de React, useRef et useEffect
 import * as THREE from "three"; // Importation de Three.js
 import "../styles/Globe.css"; // Importation des styles CSS pour ce composant
 
@@ -6,26 +6,23 @@ const Globe = () => {
   const mount = useRef(null); // Création d'une référence à un élément DOM pour ajouter le rendu Three.js
 
   useEffect(() => {
+    const initialRef = mount.current;
     // Utilisation de useEffect pour initialiser le rendu Three.js une fois que le composant est monté
     const scene = new THREE.Scene(); // Création d'une nouvelle scène Three.js
     const camera = new THREE.PerspectiveCamera(
       75, // Angle de vue de la caméra
       window.innerWidth / (window.innerHeight - 100), // Ratio d'aspect
       0.1, // Distance minimale de rendu
-      1000, // Distance maximale de rendu
+      1000 // Distance maximale de rendu
     );
     const renderer = new THREE.WebGLRenderer({ antialias: true }); // Création d'un nouveau rendu WebGL avec antialiasing
     renderer.setSize(window.innerWidth, window.innerHeight - 100); // Définition de la taille du rendu
     mount.current.appendChild(renderer.domElement); // Ajout du rendu à l'élément DOM référencé par mount
 
     const geometry = new THREE.SphereGeometry(1, 32, 32); // Création d'une nouvelle géométrie de sphere
-    const texture = new THREE.TextureLoader().load(
-      "../assets/textures/earthmap1k.jpg",
-    );
+
     const material = new THREE.MeshBasicMaterial({
-      roughness: 1,
-      metalness: 0,
-      map: texture,
+      wireframe: true
     }); // Définition d'un nouveau matériau basique de couleur verte
 
     const sphere = new THREE.Mesh(geometry, material);
@@ -48,9 +45,7 @@ const Globe = () => {
 
     // Nettoyage de la scène lorsque le composant est démonté
     return () => {
-      if (mount.current !== null) {
-        mount.current.removeChild(mount.current.firstChild);
-      }
+      initialRef.removeChild(initialRef.firstChild);
     };
   }, []);
 
