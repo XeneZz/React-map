@@ -10,7 +10,6 @@ const Home = () => {
   const [availableWidth, setAvailableWidth] = useState(window.innerWidth);
   useEffect(() => {
     window.onresize = event => {
-      //console.log(1, window.innerHeight);
       setAvailableHeight(window.innerHeight - 100);
       setAvailableWidth(window.innerWidth);
     };
