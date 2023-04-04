@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from "react"; // Importation de React, useRe
 import * as THREE from "three"; // Importation de Three.js
 import "../styles/Globe.css"; // Importation des styles CSS pour ce composant
 
-const Globe = () => {
+const Globe = props => {
   const mount = useRef(null); // Création d'une référence à un élément DOM pour ajouter le rendu Three.js
 
   useEffect(() => {
@@ -11,12 +11,12 @@ const Globe = () => {
     const scene = new THREE.Scene(); // Création d'une nouvelle scène Three.js
     const camera = new THREE.PerspectiveCamera(
       75, // Angle de vue de la caméra
-      window.innerWidth / (window.innerHeight - 100), // Ratio d'aspect
+      props.availableWidth / props.availableHeight, // Ratio d'aspect
       0.1, // Distance minimale de rendu
       1000 // Distance maximale de rendu
     );
     const renderer = new THREE.WebGLRenderer({ antialias: true }); // Création d'un nouveau rendu WebGL avec antialiasing
-    renderer.setSize(window.innerWidth, window.innerHeight - 100); // Définition de la taille du rendu
+    renderer.setSize(props.availableWidth, props.availableHeight); // Définition de la taille du rendu
     mount.current.appendChild(renderer.domElement); // Ajout du rendu à l'élément DOM référencé par mount
 
     const geometry = new THREE.SphereGeometry(1, 32, 32); // Création d'une nouvelle géométrie de sphere
@@ -47,7 +47,7 @@ const Globe = () => {
     return () => {
       initialRef.removeChild(initialRef.firstChild);
     };
-  }, []);
+  }, [props.availableWidth, props.availableHeight]);
 
   return <div ref={mount}></div>; // Renvoi de l'élément DOM référencé par mount pour afficher le rendu Three.js
 };

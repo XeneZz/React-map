@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Test fullscreen event</title>
+  </head>
+  <body>
+    <script>
+      //   document.onfullscreenchange = () =>
+      //     console.log("fullscreenchange ", window.innerHeight);
+
+      window.addEventListener("resize", event => {
+        console.log(1, window.innerHeight);
+      });
+
+      //   let resizeObserver = new ResizeObserver(entries => {
+      //     for (let entry of entries) {
+      //       console.log(2, entry);
+      //     }
+      //   });
+
+      //   resizeObserver.observe(window.document.body);
+    </script>
+  </body>
+</html>
